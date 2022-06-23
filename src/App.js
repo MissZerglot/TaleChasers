@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'; 
-import  Home from './components/pages/Home'; 
+import {BrowserRouter as Router, Routes, Link, Route} from 'react-router-dom'; 
+import Home from './components/pages/Home';
 
 function App() {
   return (
@@ -10,10 +10,9 @@ function App() {
     <Router>
     <Navbar />
     <Routes> 
-      <Route path='/' exact component= {Home} /> 
+      <Route path='/' exact element= {<Home/>} /> 
     </Routes>
     </Router> 
-    <h1>Hi</h1>
     </>  
   );
 }
