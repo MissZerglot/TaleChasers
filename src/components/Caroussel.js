@@ -1,8 +1,10 @@
 import {ArrowLeftOutlined, ArrowRightOutlined} from "@material-ui/icons";
 import styled from "styled-components";
 import React from 'react'
+import { useState } from "react";
 import images from '../images/talie.png';
 import { Button } from './Button';
+import { sliderItems } from '../data'
 
 const Container = styled.div `
     width: 100%; 
@@ -10,6 +12,7 @@ const Container = styled.div `
     display: flex; 
     background-color: transparent;  
     position: relative; 
+    overflow: hidden; 
     `
 const Arrow = styled.div `
     width: 50px; 
@@ -32,8 +35,13 @@ const Arrow = styled.div `
     margin: auto; 
     cursor: pointer; 
     opacity: 0.5; 
+    z-index: 2; 
     `
 const CarousselWrapper = styled.div `
+    height: 100%; 
+    display: flex; 
+    transform: translateX(${(props) => props.slideIndex * -100}vw); 
+    transition: all 1.5s ; 
     `
 
 const Slide = styled.div `
@@ -41,13 +49,14 @@ const Slide = styled.div `
     align-items: center; 
     width: 100vw; 
     height: 100vh; 
+    background-color: #${props=> props.bg}; 
     `
 const ImgContainer = styled.div `
     flex: 1; 
     height: 100%; 
     `
 const Image = styled.img `
-    height: 80%; 
+    height: 75%; 
     `
 const InfoContainer = styled.div `
     flex: 1; 
@@ -71,34 +80,44 @@ const ShopButton = styled.button `
     font-size: 20px; 
     cursor: pointer; 
     `
-export const Caroussel = () => {
+export const Caroussel = () => { 
+    const [slideIndex, setSlideIndex] = useState(0);
+    const handleClick = (direction) => { 
+
+        if (direction === "left") {
+            // set the slideindex to move to the next image. If that is not possible, go back to the last image of the line 
+            setSlideIndex(slideIndex > 0 ? slideIndex -1 : 3 );
+        } 
+         // repeat this for the right button
+        else {
+            setSlideIndex(slideIndex < 3 ? slideIndex + 1 : 0 ); 
+        } 
+    };
     return (
         <Container> {/* here I am using props to separate the left arrow from the right, allowing me to place them on two different sides of the page */}
-            <Arrow direction="left">
+            <Arrow direction="left" onClick={()=>handleClick("left")}>
                 <ArrowLeftOutlined/>
             </Arrow>
-            <CarousselWrapper>
-                <Slide>
+            <CarousselWrapper slideIndex={slideIndex}>
+                {sliderItems.map(item=>(   
+                <Slide bg={item.bg}> 
                     <ImgContainer>
-                        <Image src={images}/>
-
+                        <Image src={item.img}/>
                     </ImgContainer>
-
                     <InfoContainer>
-                        <Title> NEW ARRIVALS!                  
+                        <Title> {item.title}                  
                         </Title>
-                        <Description>
-                            Don't compromise on lifsaving gear.
-                            Get 25% off for fresh adventurers!
+                        <Description> {item.description}
                         </Description>
                         <ShopButton> 
                             Shop Now!
                         </ShopButton>
                     </InfoContainer>
                 </Slide>
+                ))}
             </CarousselWrapper>
 
-            <Arrow direction="right">
+            <Arrow direction="right" onClick={()=>handleClick("right")}>
                 <ArrowRightOutlined/>
             </Arrow>
         </Container>
