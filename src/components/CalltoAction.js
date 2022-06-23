@@ -1,7 +1,9 @@
 import {Button} from './Button';
 import '../App.css';
 import './CalltoAction.css';
+import {Link} from 'react-router-dom';
 import videos from '../videos/talechasershome.mp4';
+import Shop from './pages/Shop'; 
 
 function CalltoActionSection() {
     return (
@@ -18,13 +20,17 @@ function CalltoActionSection() {
                 </strong>
                 waiting for?</p>
             <div className="action-btns">
+                <a href='/shop'> 
                 <Button className='btns' buttonStyle='btn--outline' buttonSize='btn--large'>
-                    Shop Now
+                    Shop Now 
                 </Button>
+                </a> 
+                <a href="https://www.youtube.com/channel/UCh1XntLdmrLFc_jOJ4eCpHQ" target="_blank"> 
                 <Button className='btns' buttonStyle='btn--primary' buttonSize='btn--large'>
                     Watch Us
                     <i className='far fa-play-circle'/>
                 </Button>
+                </a>
             </div>
         </div>
     )

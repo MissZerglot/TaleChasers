@@ -82,6 +82,7 @@ function Footer() {
                 </div>
                 
             </section>
+            {/* Keep the current year up to date, because I'm too lazy to change it every year */ }
             <small class='website-rights'>TaleChasers©{new Date().getFullYear()}</small>
             
         </div>

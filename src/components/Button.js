@@ -12,19 +12,20 @@ export const Button = ({
     onClick,
     buttonStyle,
     buttonSize
-}) => { // Look for a style. If no style is given, go for the default style (primary)
-    const checkButtonStyle = STYLES.includes(buttonStyle) ? buttonStyle : STYLES[0];
-
+  }) => {
+    const checkButtonStyle = STYLES.includes(buttonStyle)
+      ? buttonStyle
+      : STYLES[0];
+  
     const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0];
-
-    return (<Link to='/about-us' className='btn-mobile'>
-        <button className={
-                `btn ${checkButtonStyle} ${checkButtonSize}`
-            }
-            onClick={onClick}
-            type={type}
-        >     
-          {children} 
+  
+    return (
+        <button
+          className={`btn ${checkButtonStyle} ${checkButtonSize}`}
+          onClick={onClick}
+          type={type}
+        >
+          {children}
         </button>
-    </Link>)
-};
+    );
+  };
