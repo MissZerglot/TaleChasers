@@ -1,4 +1,4 @@
-import images from './images/talie.png'; 
+
 
 export const sliderItems  = [
     {
