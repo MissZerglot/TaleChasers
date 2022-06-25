@@ -1,7 +1,7 @@
 {
   "name": "talechasers-shop",
   "version": "0.1.0",
-  "homepage": "https://MissZerglot.github.io/react-gh-pages",
+  "homepage": "./",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.4",
